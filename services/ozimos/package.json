@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "name": "@tuteria/ozimos",
+  "scripts": {
+    "build": "tsc --module commonjs --outDir dist --declaration false",
+    "watch": "tsc --module commonjs --outDir dist --declaration false --watch",
+    "start:dev": "cross-env NODE_ENV=development nodemon dist/app.js",
+    "test": "cross-env DATABASE_URL=$TEST_DATABASE_URL uvu -r ts-node/register tests",
+    "test:raw": "uvu -r ts-node/register",
+    "test:debug": "node --inspect ../../node_modules/uvu/bin.js -r ts-node/register tests",
+    "db:update": "prisma introspect",
+    "db:generate": "prisma generate",
+    "lint:src": "eslint src --ext .ts --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit",
+    "lint": "npm-run-all lint:src lint:types"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/chai-subset": "^1.3.3",
+    "@types/faker": "^5.1.0",
+    "chai": "^4.2.0",
+    "chai-subset": "^1.6.0",
+    "cuid": "^2.1.8",
+    "faker": "^5.1.0"
+  }
+}

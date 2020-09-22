@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model alembic_version {
+  version_num String @id
+}
+
+model notes {
+  id          String  @default(cuid()) @id
+  title       String?
+  description String?
+  user_id     String?
+  user        users?  @relation(fields: [user_id], references: [id])
+}
+
+model users {
+  id       String  @default(cuid()) @id
+  username String? @unique
+  notes    notes[]
+}
