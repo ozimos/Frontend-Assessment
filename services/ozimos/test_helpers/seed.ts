@@ -1,15 +1,15 @@
 import faker from "faker";
 import cuid from "cuid";
-import { users } from "@prisma/client";
+import { usersCreateInput, notes } from "@prisma/client";
 
-function userFactory(defaults: any = {}) {
+function userFactory(defaults: Partial<usersCreateInput> = {}) {
 	return {
 		username: faker.name.firstName(),
 		...defaults,
 	};
 }
 
-const noteFactory = (defaults: Partial<users> | any = {}) => ({
+const noteFactory = (defaults: Partial<notes> = {}) => ({
 	title: faker.random.words(faker.random.number({ max: 4, min: 2 })),
 	description: faker.lorem.sentence(),
 	...defaults,
@@ -30,4 +30,4 @@ const usersArr = (length: number) =>
 
 const users = usersArr(2);
 
-export { anonymousNotes, users, noteFactory };
+export { anonymousNotes, users, noteFactory, userFactory };

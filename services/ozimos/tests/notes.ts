@@ -4,12 +4,11 @@ import request from "supertest";
 import chai from "chai";
 import faker from "faker";
 import chaiSubset from "chai-subset";
-import { anonymousNotes, noteFactory } from "./seed";
+import { anonymousNotes, noteFactory } from "../test_helpers/seed";
 import * as assert from "uvu/assert";
 import "hard-rejection/register";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, notes } from "@prisma/client";
 import { suite } from "uvu";
-import { notes } from "@prisma/client";
 import cuid from "cuid";
 
 console.log(process.env.TEST_DATABASE_URL);
